@@ -9,8 +9,9 @@ const questions = [
         type: 'input',
         name: 'title',
         message: 'What is the name of your project? ',
-        validateInput: titleInput => {
+        validate: titleInput => {
             // How does this know to re-ask the question if False is returned?
+           
             if (titleInput) {
                 return true;
             } else {
@@ -23,7 +24,7 @@ const questions = [
         type: 'input',
         name: 'description',
         message: 'Please provide a description for your project: ',
-        validateInput: descInput => {
+        validate: descInput => {
             if (descInput) {
                 return true;
             } else {
@@ -36,7 +37,7 @@ const questions = [
         type: 'input',
         name: 'installation',
         message: 'Please provide installation instructions for your project: ',
-        validateInput: installationInput => {
+        validate: installationInput => {
             if (installationInput) {
                 return true;
             } else {
@@ -49,7 +50,7 @@ const questions = [
         type: 'input',
         name: 'usage',
         message: 'Please provide usage information for your project: ',
-        validateInput: usageInput => {
+        validate: usageInput => {
             if (usageInput) {
                 return true;
             } else {
@@ -62,7 +63,7 @@ const questions = [
         type: 'input',
         name: 'contributing',
         message: 'Please provide guidelines for how to contribute to this project: ',
-        validateInput: contributeInput => {
+        validate: contributeInput => {
             if (contributeInput) {
                 return true;
             } else {
@@ -75,7 +76,7 @@ const questions = [
         type: 'input',
         name: 'tests',
         message: 'Please provide instructions on how to test your application: ',
-        validateInput: testInput => {
+        validate: testInput => {
             if (testInput) {
                 return true;
             } else {
@@ -94,7 +95,7 @@ const questions = [
         type: 'input',
         name: 'githubName',
         message: 'Enter your GitHub Username: ',
-        validateInput: githubInput => {
+        validate: githubInput => {
             if (githubInput) {
                 return true;
             } else {
@@ -107,7 +108,7 @@ const questions = [
         type: 'input',
         name: 'email',
         message: 'Enter your email address: ',
-        validateInput: emailInput => {
+        validate: emailInput => {
             if (emailInput) {
                 return true;
             } else {
@@ -124,7 +125,7 @@ function writeToFile(fileName, data) {
     // Why is resolve below the err??? where is the reject? is that the err? Look up askBCS
     return new Promise((resolve, reject) => {
         // where does fileContent come from???
-        fs.writeFile('./dist/generated-README.md', fileContent, err => {
+        fs.writeFile('generated-README.md', data, err => {
             if (err) {
                 reject(err);
                 return;
@@ -141,22 +142,26 @@ function writeToFile(fileName, data) {
 // Figure out where to put generateMarkdown
 function init() {
     // is userInput what's passed through as the answer to the questions in the console?
-    inquirer.prompt(questions).then(function(userInput) {
+    inquirer.prompt(questions).then(function(answers) {
         
-        const markdownString = generateMarkdown(userInput)
+        const markdownString = generateMarkdown(answers);
 
+        writeToFile('README.MD', markdownString);
         // TODO: Create a function to write README file
-        fs.writeFile('README.md', markdownString, function(err) {
-            if(err) {
-                console.log(err)
-            }
-            else {
-                console.log('Look at your spiffy new README!')
-            }
-        })
-    },
+        // REPLACE THIS WITH THE writeToFile function call?
+    //     fs.writeFile('README.md', markdownString, function(err,data) {
+    //         if(err) {
+    //             console.log(err)
+    //         }
+    //         else {
+    //             console.log('Look at your spiffy new README!')
+    //         }
+    //         console.log(data)
+    //     })
+    // },
 
-    )}
+    })
+    }
 
 // Function call to initialize app
 init()
