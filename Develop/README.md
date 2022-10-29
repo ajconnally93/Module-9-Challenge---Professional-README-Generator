@@ -26,10 +26,10 @@
   type node index.js
 
   
-    ## [License](#table-of-contents)
-    The application is covered under the following license:
+  ## [License](#table-of-contents)
+  The application is covered under the following license:
     
-    [apache](https://choosealicense.com/licenses/apache)
+  [apache](https://choosealicense.com/licenses/apache)
       
       
 
