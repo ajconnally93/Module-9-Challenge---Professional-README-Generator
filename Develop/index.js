@@ -119,11 +119,34 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+// Don't fully understand this function
+function writeToFile(fileName, data) {
+    // Why is resolve below the err??? where is the reject? is that the err? Look up askBCS
+    return new Promise((resolve, reject) => {
+        // where does fileContent come from???
+        fs.writeFile('./dist/generated-README.md', fileContent, err => {
+            if (err) {
+                reject(err);
+                return;
+            }
+            resolve({
+                ok: true,
+                message: 'File created!'
+            });
+        });
+    });
+};
 
 // TODO: Create a function to initialize app
+// Figure out where to put generateMarkdown
 function init() {
+    inquirer.prompt(questions)
+    // Where exactly does readmeData come from?
+    .then(readmeData => {
+        return readmeData;
+    })
+    .catch(console.log("ERROR!"));
 }
 
 // Function call to initialize app
-init();
+init()
