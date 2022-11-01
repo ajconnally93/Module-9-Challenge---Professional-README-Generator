@@ -9,9 +9,9 @@ const questions = [
         type: 'input',
         name: 'title',
         message: 'What is the name of your project? ',
-        validate: titleInput => {
-            // How does this know to re-ask the question if False is returned?
-           
+        // validate key is what ensures a True response from the question before moving onto the next
+        // true is returned by simply having any text at all inputted into the console when prompted from the question under the message key
+        validate: titleInput => { 
             if (titleInput) {
                 return true;
             } else {
@@ -120,11 +120,10 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-// Don't fully understand this function
+// fileName and data will later be called as 'README.MD' and markdownString (inside function init())
 function writeToFile(fileName, data) {
-    // Why is resolve below the err??? where is the reject? is that the err? Look up askBCS
+    // resolve/reject can be coded in whatever order feels most intuitive as a developer
     return new Promise((resolve, reject) => {
-        // where does fileContent come from???
         fs.writeFile('generated-README.md', data, err => {
             if (err) {
                 reject(err);
@@ -138,30 +137,17 @@ function writeToFile(fileName, data) {
     });
 };
 
+// NOTE: THIS IS WHEN UNDERSTANDING MODULARIZATION BECOMES VERY IMPORTANT
 // TODO: Create a function to initialize app
-// Figure out where to put generateMarkdown
 function init() {
-    // is userInput what's passed through as the answer to the questions in the console?
+    // displays the questions array in order, then saves the responses as answers
     inquirer.prompt(questions).then(function(answers) {
-        
+        // replaces data with the answers inputted in the console when prompted by the questions array
         const markdownString = generateMarkdown(answers);
-
+        // Creates the file README.MD with the content from markdownString as explained above
         writeToFile('README.MD', markdownString);
-        // TODO: Create a function to write README file
-        // REPLACE THIS WITH THE writeToFile function call?
-    //     fs.writeFile('README.md', markdownString, function(err,data) {
-    //         if(err) {
-    //             console.log(err)
-    //         }
-    //         else {
-    //             console.log('Look at your spiffy new README!')
-    //         }
-    //         console.log(data)
-    //     })
-    // },
-
     })
-    }
+}
 
 // Function call to initialize app
 init()
