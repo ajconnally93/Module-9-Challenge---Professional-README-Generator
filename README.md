@@ -12,3 +12,7 @@ node index.js
 ## User Story
 
 As a Developer, I want to be able to quickly create a professional README, so that I can save time from having to re-do one from scratch for every individual project.
+
+## Video Walkthrough
+
+https://www.youtube.com/watch?v=aAOY4MH-pJw
