@@ -1,4 +1,4 @@
-# Test Project Presentation
+# test project for screencastify
 
   
   ![badge](https://img.shields.io/badge/license-mit-blue)
@@ -15,15 +15,15 @@
 
   ## [Description](#table-of-contents)
 
-  This is a test project for Screencastify
+  this is a test project
 
   ## [Installation](#table-of-contents)
 
-  Right click install
+  install it by right clicking
 
   ## [Usage](#table-of-contents)
 
-  type node index.js in console and then follow the prompts
+  use it by typing node index.js in console
 
   
   ## [License](#table-of-contents)
@@ -34,11 +34,11 @@
 
   ## [Contributing](#table-of-contents)
 
-  go to my github (given later) and create a branch
+  go to my github provided later
 
   ## [Tests](#table-of-contents)
 
-  type node index.js in the console and follow the prompts
+  test it by filling out the prompts after typing node index.js in console
 
   ## [Questions](#table-of-contents)
 
